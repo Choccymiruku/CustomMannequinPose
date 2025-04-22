@@ -1,0 +1,6 @@
+obj/Debug/
+bin/debug/net471
+.idea
+obj
+/Folder.DotSettings.user
+custom_mannequin_test.bundle
