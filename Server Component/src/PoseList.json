@@ -1,0 +1,104 @@
+{
+    "Poses": {        
+        "680139cbbd3f904e3052d991": {
+            "_id": "680139cbbd3f904e3052d991",
+            "_name": "RudeGestureMannequinPose",
+            "_parent": "675ff48ce8d2356707079617",
+            "_type": "Item",
+            "_props": {
+            "AvailableAsDefault": true,
+            "Description": "",
+            "Name": "",
+            "ProfileVersions": [],
+            "ShortName": "",
+            "Side": [
+                "Usec",
+                "Bear"
+            ],
+            "MannequinPoseName": "rude_gesture"
+            }
+        },
+        "6803386215cc5c42ca560e6f": {
+            "_id": "6803386215cc5c42ca560e6f",
+            "_name": "CaramelDanceMannequinPose",
+            "_parent": "675ff48ce8d2356707079617",
+            "_type": "Item",
+            "_props": {
+            "AvailableAsDefault": true,
+            "Description": "",
+            "Name": "",
+            "ProfileVersions": [],
+            "ShortName": "",
+            "Side": [
+                "Usec",
+                "Bear"
+            ],
+            "MannequinPoseName": "california_gurls"
+            }
+        },
+        "68036ec07472e65520db0ec4": {
+            "_id": "68036ec07472e65520db0ec4",
+            "_name": "AmimirMannequinPose",
+            "_parent": "675ff48ce8d2356707079617",
+            "_type": "Item",
+            "_props": {
+            "AvailableAsDefault": true,
+            "Description": "",
+            "Name": "",
+            "ProfileVersions": [],
+            "ShortName": "",
+            "Side": [
+                "Usec",
+                "Bear"
+            ],
+            "MannequinPoseName": "conked_out"
+            }
+        },
+        "6803e2f748893182194dbf36": {
+            "_id": "6803e2f748893182194dbf36",
+            "_name": "4BoonsMannequinPose",
+            "_parent": "675ff48ce8d2356707079617",
+            "_type": "Item",
+            "_props": {
+            "AvailableAsDefault": true,
+            "Description": "",
+            "Name": "",
+            "ProfileVersions": [],
+            "ShortName": "",
+            "Side": [
+                "Usec",
+                "Bear"
+            ],
+            "MannequinPoseName": "4_boons"
+            }
+        }
+    },
+    "PoseUnlock": [
+		{
+			"id": "680139cbbd3f904e3052d991",
+			"source": "unlockedInGame",
+			"type": "mannequinPose"
+		},
+		{
+			"id": "6803386215cc5c42ca560e6f",
+			"source": "unlockedInGame",
+			"type": "mannequinPose"
+		},
+		{
+			"id": "68036ec07472e65520db0ec4",
+			"source": "unlockedInGame",
+			"type": "mannequinPose"
+		},
+		{
+			"id": "6803e2f748893182194dbf36",
+			"source": "unlockedInGame",
+			"type": "mannequinPose"
+		}
+    ],
+    "Name": {
+        "Hideout/Mannequin/Pose/rude_gesture": "Beating It",
+        "Hideout/Mannequin/Pose/california_gurls": "White Girl Party",
+        "Hideout/Mannequin/Pose/conked_out": "Amimir",
+        "Hideout/Mannequin/Pose/4_boons": "4 Doubloons"
+    }
+}
