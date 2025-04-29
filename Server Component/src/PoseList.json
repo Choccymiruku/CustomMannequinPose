@@ -71,6 +71,96 @@
             ],
             "MannequinPoseName": "4_boons"
             }
+        },
+        "680ca067ed8b7e5411271263": {
+            "_id": "680ca067ed8b7e5411271263",
+            "_name": "BeatdownMannequinPose",
+            "_parent": "675ff48ce8d2356707079617",
+            "_type": "Item",
+            "_props": {
+            "AvailableAsDefault": true,
+            "Description": "",
+            "Name": "",
+            "ProfileVersions": [],
+            "ShortName": "",
+            "Side": [
+                "Usec",
+                "Bear"
+            ],
+            "MannequinPoseName": "dragon_beatdown"
+            }
+        },
+        "680ca0817d0acb0da8f9ff61": {
+            "_id": "680ca0817d0acb0da8f9ff61",
+            "_name": "YamchaMannequinPose",
+            "_parent": "675ff48ce8d2356707079617",
+            "_type": "Item",
+            "_props": {
+            "AvailableAsDefault": true,
+            "Description": "",
+            "Name": "",
+            "ProfileVersions": [],
+            "ShortName": "",
+            "Side": [
+                "Usec",
+                "Bear"
+            ],
+            "MannequinPoseName": "unfortunate_circumstances"
+            }
+        },
+        "680ca0a10baa45bcde5c059b": {
+            "_id": "680ca0a10baa45bcde5c059b",
+            "_name": "TheWorldMannequinPose",
+            "_parent": "675ff48ce8d2356707079617",
+            "_type": "Item",
+            "_props": {
+            "AvailableAsDefault": true,
+            "Description": "",
+            "Name": "",
+            "ProfileVersions": [],
+            "ShortName": "",
+            "Side": [
+                "Usec",
+                "Bear"
+            ],
+            "MannequinPoseName": "the_world"
+            }
+        },
+        "680ca0dcf4d1ee875a622bd3": {
+            "_id": "680ca0dcf4d1ee875a622bd3",
+            "_name": "JotaroMannequinPose",
+            "_parent": "675ff48ce8d2356707079617",
+            "_type": "Item",
+            "_props": {
+            "AvailableAsDefault": true,
+            "Description": "",
+            "Name": "",
+            "ProfileVersions": [],
+            "ShortName": "",
+            "Side": [
+                "Usec",
+                "Bear"
+            ],
+            "MannequinPoseName": "you_there"
+            }
+        },
+        "6810ba82a11d0cd0c1dfce0d": {
+            "_id": "6810ba82a11d0cd0c1dfce0d",
+            "_name": "SpideyMannequinPose",
+            "_parent": "675ff48ce8d2356707079617",
+            "_type": "Item",
+            "_props": {
+            "AvailableAsDefault": true,
+            "Description": "",
+            "Name": "",
+            "ProfileVersions": [],
+            "ShortName": "",
+            "Side": [
+                "Usec",
+                "Bear"
+            ],
+            "MannequinPoseName": "web_hero"
+            }
         }
     },
     "PoseUnlock": [
@@ -93,12 +183,42 @@
 			"id": "6803e2f748893182194dbf36",
 			"source": "unlockedInGame",
 			"type": "mannequinPose"
+		},
+		{
+			"id": "680ca067ed8b7e5411271263",
+			"source": "unlockedInGame",
+			"type": "mannequinPose"
+		},
+		{
+			"id": "680ca0817d0acb0da8f9ff61",
+			"source": "unlockedInGame",
+			"type": "mannequinPose"
+		},
+		{
+			"id": "680ca0a10baa45bcde5c059b",
+			"source": "unlockedInGame",
+			"type": "mannequinPose"
+		},
+		{
+			"id": "680ca0dcf4d1ee875a622bd3",
+			"source": "unlockedInGame",
+			"type": "mannequinPose"
+		},
+		{
+			"id": "6810ba82a11d0cd0c1dfce0d",
+			"source": "unlockedInGame",
+			"type": "mannequinPose"
 		}
     ],
     "Name": {
         "Hideout/Mannequin/Pose/rude_gesture": "Beating It",
         "Hideout/Mannequin/Pose/california_gurls": "White Girl Party",
         "Hideout/Mannequin/Pose/conked_out": "Amimir",
-        "Hideout/Mannequin/Pose/4_boons": "4 Doubloons"
+        "Hideout/Mannequin/Pose/4_boons": "4 Doubloons",
+        "Hideout/Mannequin/Pose/dragon_beatdown": "Dragon Beatdown",
+        "Hideout/Mannequin/Pose/the_world": "ZA WAAAARUUUDO",
+        "Hideout/Mannequin/Pose/unfortunate_circumstances": "Yamcha'd",
+        "Hideout/Mannequin/Pose/you_there": "You, Over there",
+        "Hideout/Mannequin/Pose/web_hero": "Your Friendly Neighbour"
     }
 }
