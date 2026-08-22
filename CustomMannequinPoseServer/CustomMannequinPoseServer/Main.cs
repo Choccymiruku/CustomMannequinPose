@@ -1,24 +1,17 @@
 using System.Reflection;
 using System.Text.Json.Serialization;
-using SPTarkov.Common.Extensions;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers.Profile;
 using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Models.Common;
-using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Spt.Mod;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Servers;
-using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Routers.Static;
 using SPTarkov.Server.Core.Services.Locales;
 using SPTarkov.Server.Core.Utils;
-using Path = System.IO.Path;
 
 namespace CustomMannequinPoseServer
 {
@@ -44,10 +37,7 @@ namespace CustomMannequinPoseServer
     public class Main_Load(
         ISptLogger<Main_Load> logger,
         TemplateTable templateTable, 
-        LocaleTable localeTable, 
-        LocaleService localeService,
-        ServerLocalisationService serverLocalisationService,
-        ProfileHelper profileHelper,
+        LocaleTable localeTable,
         ModHelper modHelper) : IOnLoad
     {
         
@@ -60,16 +50,16 @@ namespace CustomMannequinPoseServer
         private void AddPoses()
         {
             var customization = templateTable.Customization;
-            logger.Info("Pass Customization");
+            //logger.Info("Pass Customization");
             var localization = localeTable.Global;
-            logger.Info("Pass Localization");
-            var locale = localeService;
+            //logger.Info("Pass Localization");
             var path = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
-            logger.Info("Pass get assembly path");
+            //logger.Info("Pass get assembly path");
             //var jsonPath = Path.Combine(path, "PoseList.json");
+            var customizationList = templateTable.CustomisationStorage;
             
             var poseData = modHelper.GetJsonDataFromFile<PoseList>(path, "PoseList.json");
-            logger.Info($"Loading poses from {poseData.Name.Values}");
+            //logger.Info($"Loading poses from {poseData.Name.Values}");
             Dictionary<MongoId, CustomizationItem> poses = poseData.Poses;
             //Add poses to customization
             foreach (var gesture in poses)
@@ -95,28 +85,13 @@ namespace CustomMannequinPoseServer
                     }
                 }
             }
-
-            var poseLocales = localeService.GetLocaleDb("en");
-            /*logger.Info(poseLocales["Hideout/Mannequin/Pose/rude_gesture"]);
-            logger.Info(serverLocalisationService.GetText("Hideout/Mannequin/Pose/rude_gesture"));*/
             
-            /*var profiles = profileHelper.GetProfiles();
-            List<CustomisationStorage> unlocks = poseData.Unlocks;
-            foreach (var (profile, value) in profiles)
+            //Turns out the default customisation storage is stored in CustomisationStorage.json
+            List<CustomisationStorage> customizationUnlocks = poseData.Unlocks;
+            foreach (var unlocks in customizationUnlocks)
             {
-                foreach (var poseUnlock in unlocks)
-                {
-                    profiles.TryGetValue(profile, out var profileData);
-                    if (profileData.CustomisationUnlocks != null)
-                    {
-                        var dupe = profileData.CustomisationUnlocks.Where(x => x.Id != poseUnlock.Id);
-                        if (!dupe.Any())
-                        {
-                            profileData.CustomisationUnlocks.AddRange(dupe);
-                        }
-                    }
-                }
-            }*/
+                customizationList.Add(unlocks);
+            }
         }
     }
 
@@ -130,15 +105,14 @@ namespace CustomMannequinPoseServer
         public List<CustomisationStorage> Unlocks { get; set; }
     }
 
-    [Injectable(TypePriority = OnLoadOrder.Routers + 29)]
+    //Hooks into the client game start router and modify every profile that has
+    //customisation unlock available and add our poses there cause for some reason even with AvailableAsDefault is true
+    //It still needs to be added
+    //above statement is no longer true, but i am keeping it here just in case someone wants to check it out on how to hook into router idk
+    /*[Injectable(TypePriority = OnLoadOrder.Routers + 29)]
     public class Router(
-        ISptLogger<Router> logger,
-        TemplateTable templateTable, 
-        LocaleTable localeTable, 
         JsonUtil jsonUtil,
-        ProfileHelper profileHelper, 
-        LocaleService localeService,
-        ServerLocalisationService serverLocalisationService,
+        ProfileHelper profileHelper,
         ModHelper modHelper) : StaticRouter (jsonUtil, 
         [new RouteAction("/client/game/start",
                 async (url, info, sessionId, output, token) =>
@@ -147,15 +121,15 @@ namespace CustomMannequinPoseServer
                     var path = modHelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
                     var poseData = modHelper.GetJsonDataFromFile<PoseList>(path, "PoseList.json");
                     List<CustomisationStorage> unlocks = poseData.Unlocks;
-                    foreach (var (profile, value) in profiles)
+                    foreach (var profile in profiles)
                     {
                         foreach (var poseUnlock in unlocks)
                         {
-                            profiles.TryGetValue(profile, out var profileData);
-                            if (profileData.CustomisationUnlocks != null)
+                            profiles.TryGetValue(profile.Key, out var profileData);
+                            if (profileData?.CustomisationUnlocks != null)
                             {
                                 var dupe = profileData.CustomisationUnlocks;
-                                if (!dupe.All(x => x.Id == poseUnlock.Id))
+                                if (dupe.All(x => x.Id != poseUnlock.Id))
                                 {
                                     profileData.CustomisationUnlocks.Add(poseUnlock);
                                 }
@@ -166,21 +140,6 @@ namespace CustomMannequinPoseServer
                 }, typeof(GameStaticRouter))
         ]
     )
-    {
-        
-    }
-
-    /*[Injectable]
-    public class AddPoseToExistingProfile(ProfileHelper profileHelper, JsonUtil jsonUtil, ModHelper modHelper)
-    {
-        
-        public ValueTask<string> AddToExisting(string url, PoseUnlocks poseUnlocks, MongoId sessionId)
-        {
-            var profileHelper = ProfileHelper
-        }
-    }
-
-    public record PoseUnlocks : IRequestData
     {
         
     }*/

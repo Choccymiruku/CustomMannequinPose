@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading;
 using EFT;
 using EFT.Customization;
 using EFT.Hideout;
@@ -12,7 +13,7 @@ using UnityEngine;
 namespace CustomMannequinPose
 {
     //OnPoseChangedPatch is not needed since this is like the surface level method that taps the UpdateMannequinPose
-    public class OnPoseChangedPatch : ModulePatch
+    /*public class OnPoseChangedPatch : ModulePatch
     {
         protected override MethodBase GetTargetMethod()
         {
@@ -42,7 +43,7 @@ namespace CustomMannequinPose
             //below should do the following, force the mannequin to play Standing animation instead
             ____stashController.UpdateMannequinPose(equipment, "standing");
         }
-    }
+    }*/
     // Overrides the animatorcontroller whenever mannequin got updated with poses from our list
     public class UpdateMannequinPosePatch : ModulePatch
     {
@@ -60,7 +61,7 @@ namespace CustomMannequinPose
             
             //check if the mannequinPoseName is similar to ours, if it is grab the animation with said name
             //from our stored array of animation in AnimPoses
-            if (!NameCheck.IsSimilarCheck(poseAnimationClipName)) return true;
+            if (!NameCheck.IsSimilarPose(poseAnimationClipName)) return true;
             if (!Plugin.AnimPoses.TryGetValue(poseAnimationClipName, out var animClip)) return true;
             //copy the runtimeanimatorcontroller from our mannequin and store it
             if (Plugin.AnimatorController == null)
@@ -68,7 +69,7 @@ namespace CustomMannequinPose
                 Plugin.AnimatorController = mannequinAnimator.runtimeAnimatorController;
             }
             //create a override controller basing the target from our saved runtime controller
-            var OverrideController = new  AnimatorOverrideController(Plugin.AnimatorController);
+            var OverrideController = new AnimatorOverrideController(Plugin.AnimatorController);
             //override the animation state "standing" with our animation clip we got from previous
             OverrideController["standing"] = animClip;
             //replace the controller with override
@@ -76,6 +77,47 @@ namespace CustomMannequinPose
             //force play the modified state. 
             mannequinAnimator.Play("standing");
             return false;
+        }
+    }
+
+    public class InterceptUpdateAnimator : ModulePatch
+    {
+        protected override MethodBase GetTargetMethod()
+        {
+            return AccessTools.Method(typeof(InventoryEquipmentStashLoader), "UpdateAnimator");
+        }
+
+        [PatchPostfix]
+        public static void PatchPostfix(InventoryEquipmentStashLoader __instance, Item item, Dictionary<string, MongoID> ____mannequinPoses, RuntimeAnimatorController ____mannequinAnimatorController)
+        {
+            var playerAnimatorController = __instance.LoadedPlayerModels[item].ModelPlayerPoser.PlayerAnimatorController;
+            ____mannequinPoses.TryGetValue(item.Id, out var selectedId);
+
+            if (!NameCheck.IsSimilarId(selectedId))
+            {
+#if DEBUG
+                Logger.LogInfo($"{selectedId} Does not have corresponding value in pose lists");
+#endif
+                return;
+            }
+
+            if (!NameCheck.ClipName.TryGetValue(selectedId, out var clipName))
+            {
+#if DEBUG
+                Logger.LogInfo($"Cannot find clip name from ID {selectedId}");
+#endif
+                return;
+            }
+            
+            Plugin.AnimPoses.TryGetValue(clipName, out var animClip);
+            if (Plugin.AnimatorController == null)
+            {
+                Plugin.AnimatorController = ____mannequinAnimatorController;
+            }
+            var overrideController = new AnimatorOverrideController(Plugin.AnimatorController);
+            overrideController["standing"] = animClip;
+            playerAnimatorController.runtimeAnimatorController = overrideController;
+            playerAnimatorController.Play("standing");
         }
     }
 }

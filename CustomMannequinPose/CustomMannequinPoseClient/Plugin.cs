@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 namespace CustomMannequinPose
 {
     [BepInPlugin("com.choccy.custommannequinpose", "com.choccy.custommannequinpose", "1.1.0")]
+    //[BepInDependency("com.wtt.contentbackport", BepInDependency.DependencyFlags.SoftDependency)]
     public class Plugin : BaseUnityPlugin
     {
         public static new ManualLogSource Logger;
@@ -31,6 +32,7 @@ namespace CustomMannequinPose
             
             //new OnPoseChangedPatch().Enable();
             new UpdateMannequinPosePatch().Enable();
+            new InterceptUpdateAnimator().Enable();
         }
     
         public static void LoadBundle()
@@ -48,13 +50,17 @@ namespace CustomMannequinPose
                     Logger.LogError($"Failed to load {Path.GetFileName(file)}!");
                     continue;
                 }
+#if DEBUG
                 Logger.LogInfo($"Load {Path.GetFileName(file)}!");
+#endif
                 foreach (AnimationClip clip in bundle.LoadAllAssets<AnimationClip>())
                 {
                     AnimPoses[clip.name] = clip;
                 }
                 bundle.Unload(false);
+#if DEBUG
                 Logger.LogInfo("Bundle Loading pass");
+#endif                
             }
         }
     
@@ -63,7 +69,7 @@ namespace CustomMannequinPose
             var dllPath = Assembly.GetExecutingAssembly().Location;
             var path = Path.GetDirectoryName(dllPath);
             var posePath = Path.Combine(path, "JsonPoseLists");
-            var compiledPoseList = new List<PostList>();
+            var compiledPoseList = new List<CustomPose>();
             NameCheck.ClipName.Clear();
             if (Directory.Exists(posePath))
             {
@@ -72,69 +78,79 @@ namespace CustomMannequinPose
                 foreach (string filepath in files)
                 {
                     string json = File.ReadAllText(filepath);
-                    var poseData = JsonConvert.DeserializeObject<PostList>(json);
-                    if (poseData.CustomPoseLists != null)
-                    {
-                        compiledPoseList.Add(poseData);
-                    }
-                    if (poseData?.CustomPoseLists == null)
+                    var poseData = JsonConvert.DeserializeObject<CustomPose>(json);
+                    
+                    if (poseData == null)
                     {
                         Logger.LogWarning($"Unable to read Json {posePath}!");
                         return;
                     }
-                    foreach (CustomPose pose in poseData.CustomPoseLists)
+                    
+                    if (poseData.CustomPoseLists == null)
                     {
-                        if (string.IsNullOrEmpty(pose?.ClipName))
-                        {
-                            continue;
-                        }
-                        NameCheck.ClipName.Add(pose.ClipName);
-                        Logger.LogInfo($"Added {pose.ClipName} to ClipName");
-                        Logger.LogInfo($"{NameCheck.ClipName.Count} CustomPoseLists");
+                        Logger.LogWarning("There's no data inside the Json file");
+                        return;
                     }
+                    
+                    foreach (var (id, name) in poseData.CustomPoseLists)
+                    {
+                        if (id == null || name == null)
+                        {
+                            return;
+                        }
+                        
+                        NameCheck.ClipName.Add(id, name);
+#if DEBUG
+                        Logger.LogInfo($"{id} = {name} to ClipName");
+#endif
+                    }
+                   
+#if DEBUG
+                     Logger.LogInfo($"{NameCheck.ClipName.Count} CustomPoseLists");
                     Logger.LogInfo("JsonLoadingPass");
+#endif
                 }
             }
+#if DEBUG
+            Logger.LogWarning($"Unable to Find Folder!");      
+#endif
         }
     }
-    /// <summary>
-    /// the name of the animation clip named used to referenced what animation state to play
-    /// </summary>
+    
     public class CustomPose
     {
-        public string ClipName;
+        public Dictionary<string, string> CustomPoseLists;
     }
-    /// <summary>
-    /// Custom list for storing clipName
-    /// </summary>
-    public class PostList
+    
+    /*public class PostList
     {
-        public List<CustomPose> CustomPoseLists {get; set;}
-    }
-    /// <summary>
-    /// stores the relevant passed data from EquipmentPresetsPanel Show
-    /// </summary>
-    public class SelectedPose
+        [JsonProperty("CustomPoseLists")]
+        public List<CustomPose> CustomPoseLists {get; set; }
+    }*/
+    // not even used
+    /*public class SelectedPose
     {
         public string EquipmentId;
         public MongoID PoseId;
         public string PoseName;
-    }
-    /// <summary>
-    /// OverridePose does a comparison, if the poseName is not from CustomPoseLists it will return false
-    /// SaveName saves the passed data of SelectedPose to cache it. Will be used to pass the poseName and override the pose with our custom ones
-    /// </summary>
+    }*/
+    //Do a comparison check
     public class NameCheck
     {
-        public static List<string> ClipName { get; set; } = new List<string>();
-        public static Dictionary<string, SelectedPose> CachedPose { get; } = new Dictionary<string, SelectedPose>();
+        public static Dictionary<string, string> ClipName { get; set; } = new Dictionary<string, string>();
+        //public static Dictionary<string, SelectedPose> CachedPose { get; } = new Dictionary<string, SelectedPose>();
 
-        public static bool IsSimilarCheck(string poseName)
+        public static bool IsSimilarPose(string poseName)
         {
-            return ClipName.Contains(poseName);
+            return ClipName.Values.Contains(poseName);
+        }
+
+        public static bool IsSimilarId(string poseId)
+        {
+            return ClipName.Keys.Contains(poseId);
         }
     
-        public static void SaveName(string equipmentId, MongoID poseId, string poseName)
+        /*public static void SaveName(string equipmentId, MongoID poseId, string poseName)
         {
             CachedPose[equipmentId] = new SelectedPose()
             {
@@ -142,6 +158,6 @@ namespace CustomMannequinPose
                 PoseName = poseName,
                 EquipmentId = equipmentId
             };
-        }
+        }*/
     }
 }

@@ -1,32 +1,14 @@
 {
   "CustomPoseLists":
-  [
     {
-      "ClipName": "rude_gesture"
-    },
-    {
-      "ClipName": "unfortunate_circumstances"
-    },
-    {
-      "ClipName": "the_world"
-    },
-    {
-      "ClipName": "caramel_dance"
-    },
-    {
-      "ClipName": "conked_out"
-    },
-    {
-      "ClipName": "4_boons"
-    },
-    {
-      "ClipName": "dragon_beatdown"
-    },
-    {
-      "ClipName": "you_there"
-    },
-    {
-      "ClipName": "web_hero"
+      "680139cbbd3f904e3052d991": "rude_gesture",
+      "680ca0817d0acb0da8f9ff61": "unfortunate_circumstances",
+      "680ca0a10baa45bcde5c059b": "the_world",
+      "6803386215cc5c42ca560e6f": "caramel_dance",
+      "68036ec07472e65520db0ec4": "conked_out",
+      "6803e2f748893182194dbf36": "4_boons",
+      "680ca067ed8b7e5411271263": "dragon_beatdown",
+      "680ca0dcf4d1ee875a622bd3": "you_there",
+      "6810ba82a11d0cd0c1dfce0d": "web_hero"
     }
-  ]
 }
