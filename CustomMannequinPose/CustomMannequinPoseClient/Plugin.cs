@@ -106,14 +106,12 @@ namespace CustomMannequinPose
                     }
                    
 #if DEBUG
-                     Logger.LogInfo($"{NameCheck.ClipName.Count} CustomPoseLists");
+                    Logger.LogInfo($"{NameCheck.ClipName.Count} CustomPoseLists");
                     Logger.LogInfo("JsonLoadingPass");
 #endif
                 }
             }
-#if DEBUG
             Logger.LogWarning($"Unable to Find Folder!");      
-#endif
         }
     }
     

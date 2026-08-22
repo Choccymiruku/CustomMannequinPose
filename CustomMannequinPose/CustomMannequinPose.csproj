@@ -103,11 +103,32 @@
       </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Content Include="CustomMannequinPoseClient/PoseBundle">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        <Content Include="CustomMannequinPoseClient\JsonPoseLists\*.*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <Content Include="CustomMannequinPoseClient/JsonPoseLists/**">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        <Content Include="CustomMannequinPoseClient\PoseBundle\*.*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
     </ItemGroup>
+    <PropertyGroup>
+        <DeployDir>M:\Work\MyRawMod\ManneuqinMods\MoreMannequinPoses\BepinEx\plugins\CustomMannequinPoses\</DeployDir>
+    </PropertyGroup>
+    <Target Name="CopyDLL" AfterTargets="Build">
+        <Copy SourceFiles="$(OutDir)$(ProjectName).dll"
+              DestinationFolder="$(DeployDir)"
+              SkipUnchangedFiles="true" />
+    </Target>
+    <Target Name="CopyBundle" AfterTargets="Build">
+        <ItemGroup>
+            <DeployFiles Include="$(OutDir)CustomMannequinPoseClient\PoseBundle\**\*.*" >
+                <TargetSubDir>PoseBundle</TargetSubDir>
+            </DeployFiles>
+            <DeployFiles Include="$(OutDir)CustomMannequinPoseClient\JsonPoseLists\**\*.*" >
+                <TargetSubDir>JsonPoseLists</TargetSubDir>
+            </DeployFiles>
+        </ItemGroup>
+        <Copy SourceFiles="@(DeployFiles)"
+              DestinationFiles="@(DeployFiles->'$(DeployDir)%(TargetSubDir)\%(RecursiveDir)%(Filename)%(Extension)')"
+              SkipUnchangedFiles="true" />
+    </Target>
 </Project>

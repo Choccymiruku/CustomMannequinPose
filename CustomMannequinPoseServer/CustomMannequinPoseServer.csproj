@@ -23,12 +23,17 @@
         <PackageReference Include="SPTarkov.Server.Core" Version="4.1.2" />
     </ItemGroup>
     <ItemGroup>
-        <Content Include="CustomMannequinPoseServer/PoseList.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
-    <ItemGroup>
       <Folder Include=".git\objects\info\" />
       <Folder Include=".git\objects\pack\" />
     </ItemGroup>
+    <Target Name="CopyDLL" AfterTargets="Build">
+        <Copy SourceFiles="$(OutDir)$(ProjectName).dll"
+              DestinationFolder="M:\Work\MyRawMod\ManneuqinMods\MoreMannequinPoses\SPT_Runtime\user\mods\CustomMannequinPoseServer\"
+              SkipUnchangedFiles="true" />
+    </Target>
+    <Target Name="CopyJson" AfterTargets="Build">
+        <Copy SourceFiles="$(OutDir)\CustomMannequinPoseServer\PoseList.json"
+              DestinationFolder="M:\Work\MyRawMod\ManneuqinMods\MoreMannequinPoses\SPT_Runtime\user\mods\CustomMannequinPoseServer\"
+              SkipUnchangedFiles="true" />
+    </Target>
 </Project>
