@@ -102,8 +102,12 @@
         <HintPath>H:\SPT 4.1\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
     </ItemGroup>
-
     <ItemGroup>
-      <Folder Include="CustomMannequinPoseClient\PoseBundle\" />
+        <Content Include="CustomMannequinPoseClient/PoseBundle">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Include="CustomMannequinPoseClient/JsonPoseLists/**">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 </Project>
