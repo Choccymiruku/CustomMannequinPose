@@ -1,0 +1,32 @@
+{
+  "CustomPoseLists":
+  [
+    {
+      "ClipName": "rude_gesture"
+    },
+    {
+      "ClipName": "unfortunate_circumstances"
+    },
+    {
+      "ClipName": "the_world"
+    },
+    {
+      "ClipName": "caramel_dance"
+    },
+    {
+      "ClipName": "conked_out"
+    },
+    {
+      "ClipName": "4_boons"
+    },
+    {
+      "ClipName": "dragon_beatdown"
+    },
+    {
+      "ClipName": "you_there"
+    },
+    {
+      "ClipName": "web_hero"
+    }
+  ]
+}

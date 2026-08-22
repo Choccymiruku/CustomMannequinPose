@@ -1,0 +1,10 @@
+M:\Work\MyRawMod\Builds\CustomMannequinPoseServer\PoseList.json
+M:\Work\MyRawMod\Builds\CustomMannequinPoseServer\CustomMannequinPoseServer.dll
+M:\Work\MyRawMod\CustomMannequinPoseServer\obj\Release\CustomMannequinPoseServer.csproj.AssemblyReference.cache
+M:\Work\MyRawMod\CustomMannequinPoseServer\obj\Release\CustomMannequinPoseServer.GeneratedMSBuildEditorConfig.editorconfig
+M:\Work\MyRawMod\CustomMannequinPoseServer\obj\Release\CustomMannequinPoseServer.AssemblyInfoInputs.cache
+M:\Work\MyRawMod\CustomMannequinPoseServer\obj\Release\CustomMannequinPoseServer.AssemblyInfo.cs
+M:\Work\MyRawMod\CustomMannequinPoseServer\obj\Release\CustomMannequinPoseServer.csproj.CoreCompileInputs.cache
+M:\Work\MyRawMod\CustomMannequinPoseServer\obj\Release\CustomMannequinPoseServer.dll
+M:\Work\MyRawMod\CustomMannequinPoseServer\obj\Release\refint\CustomMannequinPoseServer.dll
+M:\Work\MyRawMod\CustomMannequinPoseServer\obj\Release\ref\CustomMannequinPoseServer.dll

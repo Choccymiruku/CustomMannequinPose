@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomMannequinPose", "CustomMannequinPose\CustomMannequinPose.csproj", "{034BBF6B-E43C-4483-84A3-3CC7F3D7F384}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomMannequinPoseServer", "CustomMannequinPoseServer\CustomMannequinPoseServer.csproj", "{ADBD3821-AB6D-458E-9801-DAB462F2FF9C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{034BBF6B-E43C-4483-84A3-3CC7F3D7F384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{034BBF6B-E43C-4483-84A3-3CC7F3D7F384}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{034BBF6B-E43C-4483-84A3-3CC7F3D7F384}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{034BBF6B-E43C-4483-84A3-3CC7F3D7F384}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADBD3821-AB6D-458E-9801-DAB462F2FF9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADBD3821-AB6D-458E-9801-DAB462F2FF9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADBD3821-AB6D-458E-9801-DAB462F2FF9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADBD3821-AB6D-458E-9801-DAB462F2FF9C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

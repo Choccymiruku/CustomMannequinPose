@@ -1,0 +1,109 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyName>CustomMannequinPose</AssemblyName>
+        <Product>My first plugin</Product>
+        <Version>1.0.0</Version>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <RootNamespace>CustomMannequinPose</RootNamespace>
+        <TargetFramework>netstandard2.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="0Harmony">
+        <HintPath>H:\SPT 4.1\BepInEx\core\0Harmony.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>H:\SPT 4.1\EscapeFromTarkov_Data\Managed\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="BepInEx">
+        <HintPath>H:\SPT 4.1\BepInEx\core\BepInEx.dll</HintPath>
+      </Reference>
+      <Reference Include="BepInEx.Harmony">
+        <HintPath>H:\SPT 4.1\BepInEx\core\BepInEx.Harmony.dll</HintPath>
+      </Reference>
+      <Reference Include="BepInEx.Preloader">
+        <HintPath>H:\SPT 4.1\BepInEx\core\BepInEx.Preloader.dll</HintPath>
+      </Reference>
+      <Reference Include="Mono.Cecil">
+        <HintPath>H:\SPT 4.1\BepInEx\core\Mono.Cecil.dll</HintPath>
+      </Reference>
+      <Reference Include="Mono.Cecil.Mdb">
+        <HintPath>H:\SPT 4.1\BepInEx\core\Mono.Cecil.Mdb.dll</HintPath>
+      </Reference>
+      <Reference Include="Mono.Cecil.Pdb">
+        <HintPath>H:\SPT 4.1\BepInEx\core\Mono.Cecil.Pdb.dll</HintPath>
+      </Reference>
+      <Reference Include="Mono.Cecil.Rocks">
+        <HintPath>H:\SPT 4.1\BepInEx\core\Mono.Cecil.Rocks.dll</HintPath>
+      </Reference>
+      <Reference Include="MonoMod.RuntimeDetour">
+        <HintPath>H:\SPT 4.1\BepInEx\core\MonoMod.RuntimeDetour.dll</HintPath>
+      </Reference>
+      <Reference Include="MonoMod.Utils">
+        <HintPath>H:\SPT 4.1\BepInEx\core\MonoMod.Utils.dll</HintPath>
+      </Reference>
+      <Reference Include="Newtonsoft.Json">
+        <HintPath>H:\SPT 4.1\EscapeFromTarkov_Data\Managed\Newtonsoft.Json.dll</HintPath>
+      </Reference>
+      <Reference Include="Sirenix.OdinInspector.Attributes">
+        <HintPath>H:\SPT 4.1\EscapeFromTarkov_Data\Managed\Sirenix.OdinInspector.Attributes.dll</HintPath>
+      </Reference>
+      <Reference Include="Sirenix.Serialization">
+        <HintPath>H:\SPT 4.1\EscapeFromTarkov_Data\Managed\Sirenix.Serialization.dll</HintPath>
+      </Reference>
+      <Reference Include="Sirenix.Serialization.Config">
+        <HintPath>H:\SPT 4.1\EscapeFromTarkov_Data\Managed\Sirenix.Serialization.Config.dll</HintPath>
+      </Reference>
+      <Reference Include="Sirenix.Utilities">
+        <HintPath>H:\SPT 4.1\EscapeFromTarkov_Data\Managed\Sirenix.Utilities.dll</HintPath>
+      </Reference>
+      <Reference Include="spt-common">
+        <HintPath>H:\SPT 4.1\BepInEx\plugins\spt\spt-common.dll</HintPath>
+      </Reference>
+      <Reference Include="spt-core">
+        <HintPath>H:\SPT 4.1\BepInEx\plugins\spt\spt-core.dll</HintPath>
+      </Reference>
+      <Reference Include="spt-custom">
+        <HintPath>H:\SPT 4.1\BepInEx\plugins\spt\spt-custom.dll</HintPath>
+      </Reference>
+      <Reference Include="spt-debugging">
+        <HintPath>H:\SPT 4.1\BepInEx\plugins\spt\spt-debugging.dll</HintPath>
+      </Reference>
+      <Reference Include="spt-reflection">
+        <HintPath>H:\SPT 4.1\BepInEx\plugins\spt\spt-reflection.dll</HintPath>
+      </Reference>
+      <Reference Include="spt-singleplayer">
+        <HintPath>H:\SPT 4.1\BepInEx\plugins\spt\spt-singleplayer.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>H:\SPT 4.1\EscapeFromTarkov_Data\Managed\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>H:\SPT 4.1\EscapeFromTarkov_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AssetBundleModule">
+        <HintPath>H:\SPT 4.1\EscapeFromTarkov_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule" Condition="'$(TargetFramework)' == 'net471'">
+        <HintPath>H:\SPT 4.1\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>H:\SPT 4.1\EscapeFromTarkov_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="CustomMannequinPoseClient\PoseBundle\" />
+    </ItemGroup>
+</Project>
