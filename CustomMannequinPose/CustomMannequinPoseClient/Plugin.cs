@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace CustomMannequinPose
 {
-    [BepInPlugin("com.choccy.custommannequinpose", "com.choccy.custommannequinpose", "1.1.0")]
+    [BepInPlugin("com.choccy.custommannequinpose", "com.choccy.custommannequinpose", "2.0.0")]
     //[BepInDependency("com.wtt.contentbackport", BepInDependency.DependencyFlags.SoftDependency)]
     public class Plugin : BaseUnityPlugin
     {
@@ -69,7 +69,6 @@ namespace CustomMannequinPose
             var dllPath = Assembly.GetExecutingAssembly().Location;
             var path = Path.GetDirectoryName(dllPath);
             var posePath = Path.Combine(path, "JsonPoseLists");
-            var compiledPoseList = new List<CustomPose>();
             NameCheck.ClipName.Clear();
             if (Directory.Exists(posePath))
             {

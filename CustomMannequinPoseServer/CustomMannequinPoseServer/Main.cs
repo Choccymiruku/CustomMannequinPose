@@ -3,21 +3,17 @@ using System.Text.Json.Serialization;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
-using SPTarkov.Server.Core.Helpers.Profile;
 using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Mod;
 using SPTarkov.Server.Core.Models.Spt.Tables;
-using SPTarkov.Server.Core.Routers.Static;
-using SPTarkov.Server.Core.Services.Locales;
-using SPTarkov.Server.Core.Utils;
 
 namespace CustomMannequinPoseServer
 {
     public record ModMetadata : IModMetadata
     {
-        public string Name { get; init; } = "Mod Name";
+        public string Name { get; init; } = "Custom Mannequin Poses";
         public string Author { get; init; } = "Choccy Milk";
 
         public List<string>? Contributors { get; init; }
@@ -98,11 +94,11 @@ namespace CustomMannequinPoseServer
     public record PoseList
     {
         [JsonPropertyName("Poses")]
-        public Dictionary<MongoId, CustomizationItem> Poses { get; set; }
+        public required Dictionary<MongoId, CustomizationItem> Poses { get; set; }
         [JsonPropertyName("Name")]
-        public Dictionary<string, string> Name { get; set; }
+        public required Dictionary<string, string> Name { get; set; }
         [JsonPropertyName("PoseUnlock")]
-        public List<CustomisationStorage> Unlocks { get; set; }
+        public required List<CustomisationStorage> Unlocks { get; set; }
     }
 
     //Hooks into the client game start router and modify every profile that has

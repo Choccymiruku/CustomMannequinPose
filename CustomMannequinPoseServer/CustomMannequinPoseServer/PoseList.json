@@ -161,7 +161,79 @@
             ],
             "MannequinPoseName": "web_hero"
             }
-        }
+        },
+        "6a8bc8ea12f726587a726927": {
+          "_id": "6a8bc8ea12f726587a726927",
+          "_name": "HonoredOneMannequinPose",
+          "_parent": "675ff48ce8d2356707079617",
+          "_type": "Item",
+          "_props": {
+            "AvailableAsDefault": true,
+            "Description": "",
+            "Name": "",
+            "ProfileVersions": [],
+            "ShortName": "",
+            "Side": [
+              "Usec",
+              "Bear"
+            ],
+            "MannequinPoseName": "honored_one"
+          }
+        },
+        "6a8bc97d83d55722625400ac": {
+            "_id": "6a8bc97d83d55722625400ac",
+            "_name": "WeSeeItMannequinPose",
+            "_parent": "675ff48ce8d2356707079617",
+            "_type": "Item",
+            "_props": {
+                "AvailableAsDefault": true,
+                "Description": "",
+                "Name": "",
+                "ProfileVersions": [],
+                "ShortName": "",
+                "Side": [
+                    "Usec",
+                    "Bear"
+                ],
+                "MannequinPoseName": "we_see_it"
+            }
+        },
+        "6a8bc9a61ff6300e22385204": {
+            "_id": "6a8bc9a61ff6300e22385204",
+            "_name": "ChachihuMannequinPose",
+            "_parent": "675ff48ce8d2356707079617",
+            "_type": "Item",
+            "_props": {
+              "AvailableAsDefault": true,
+              "Description": "",
+              "Name": "",
+              "ProfileVersions": [],
+              "ShortName": "",
+              "Side": [
+                "Usec",
+                "Bear"
+              ],
+              "MannequinPoseName": "chachihu"
+            }
+          },
+        "6a8bc9df86c4c451a26b71f1": {
+            "_id": "6a8bc9df86c4c451a26b71f1",
+            "_name": "VirtualInsanityMannequinPose",
+            "_parent": "675ff48ce8d2356707079617",
+            "_type": "Item",
+            "_props": {
+              "AvailableAsDefault": true,
+              "Description": "",
+              "Name": "",
+              "ProfileVersions": [],
+              "ShortName": "",
+              "Side": [
+                "Usec",
+                "Bear"
+              ],
+              "MannequinPoseName": "virtual_insanity"
+            }
+          }
     },
     "PoseUnlock": [
 		{
@@ -205,10 +277,25 @@
 			"type": "mannequinPose"
 		},
 		{
-			"id": "6810ba82a11d0cd0c1dfce0d",
+			"id": "6a8bc9df86c4c451a26b71f1",
 			"source": "unlockedInGame",
 			"type": "mannequinPose"
-		}
+		},
+        {
+          "id": "6a8bc8ea12f726587a726927",
+          "source": "unlockedInGame",
+          "type": "mannequinPose"
+        },
+        {
+          "id": "6a8bc9a61ff6300e22385204",
+          "source": "unlockedInGame",
+          "type": "mannequinPose"
+        },
+        {
+          "id": "6a8bc97d83d55722625400ac",
+          "source": "unlockedInGame",
+          "type": "mannequinPose"
+        }
     ],
     "Name": {
         "Hideout/Mannequin/Pose/rude_gesture": "Beating It",
@@ -219,6 +306,9 @@
         "Hideout/Mannequin/Pose/the_world": "ZA WAAAARUUUDO",
         "Hideout/Mannequin/Pose/unfortunate_circumstances": "Yamcha'd",
         "Hideout/Mannequin/Pose/you_there": "You, Over there",
-        "Hideout/Mannequin/Pose/web_hero": "Your Friendly Neighbour"
+        "Hideout/Mannequin/Pose/chachihu": "The Winged Tiger",
+        "Hideout/Mannequin/Pose/honored_one": "Honored One",
+        "Hideout/Mannequin/Pose/virtual_insanity": "Hold Up",
+        "Hideout/Mannequin/Pose/we_see_it": "We see the Fit"
     }
 }

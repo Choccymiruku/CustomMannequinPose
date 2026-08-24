@@ -45,6 +45,7 @@ namespace CustomMannequinPose
         }
     }*/
     // Overrides the animatorcontroller whenever mannequin got updated with poses from our list
+    // I don't think i need this patch given the update animator async patch
     public class UpdateMannequinPosePatch : ModulePatch
     {
         protected override MethodBase GetTargetMethod()
@@ -90,9 +91,12 @@ namespace CustomMannequinPose
         [PatchPostfix]
         public static void PatchPostfix(InventoryEquipmentStashLoader __instance, Item item, Dictionary<string, MongoID> ____mannequinPoses, RuntimeAnimatorController ____mannequinAnimatorController)
         {
+            //Update animator always keeps running as an async task. So, we grab the animator controller from all mannequin
+            //grab the MongoID of the pose from all mannequin, i think
             var playerAnimatorController = __instance.LoadedPlayerModels[item].ModelPlayerPoser.PlayerAnimatorController;
             ____mannequinPoses.TryGetValue(item.Id, out var selectedId);
 
+            //check if the ID being used as the pose matches with ours
             if (!NameCheck.IsSimilarId(selectedId))
             {
 #if DEBUG
@@ -101,6 +105,7 @@ namespace CustomMannequinPose
                 return;
             }
 
+            //passes the check, so we try to grab the pose name that is linked to the MongoID
             if (!NameCheck.ClipName.TryGetValue(selectedId, out var clipName))
             {
 #if DEBUG
@@ -108,7 +113,8 @@ namespace CustomMannequinPose
 #endif
                 return;
             }
-            
+            //grab the name of the pose from our stored animation clip
+            //and override the controller with Animator Override Controller
             Plugin.AnimPoses.TryGetValue(clipName, out var animClip);
             if (Plugin.AnimatorController == null)
             {
@@ -117,6 +123,7 @@ namespace CustomMannequinPose
             var overrideController = new AnimatorOverrideController(Plugin.AnimatorController);
             overrideController["standing"] = animClip;
             playerAnimatorController.runtimeAnimatorController = overrideController;
+            //force play Overriden State
             playerAnimatorController.Play("standing");
         }
     }
