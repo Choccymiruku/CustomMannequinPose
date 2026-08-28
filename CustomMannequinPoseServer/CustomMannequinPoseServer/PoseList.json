@@ -233,7 +233,43 @@
               ],
               "MannequinPoseName": "virtual_insanity"
             }
-          }
+          },
+          "6a91a649c7a96b1dc900f1c6": {
+            "_id": "6a91a649c7a96b1dc900f1c6",
+            "_name": "PurpleTechniqueMannequinPose",
+            "_parent": "675ff48ce8d2356707079617",
+            "_type": "Item",
+            "_props": {
+            "AvailableAsDefault": true,
+            "Description": "",
+            "Name": "",
+            "ProfileVersions": [],
+            "ShortName": "",
+            "Side": [
+                "Usec",
+                "Bear"
+            ],
+            "MannequinPoseName": "technique_purple"
+            }
+        },
+        "6a91a64d81766e48b8a66522": {
+            "_id": "6a91a64d81766e48b8a66522",
+            "_name": "HeyJackMannequinPose",
+            "_parent": "675ff48ce8d2356707079617",
+            "_type": "Item",
+            "_props": {
+            "AvailableAsDefault": true,
+            "Description": "",
+            "Name": "",
+            "ProfileVersions": [],
+            "ShortName": "",
+            "Side": [
+                "Usec",
+                "Bear"
+            ],
+            "MannequinPoseName": "good_time"
+            }
+        }
     },
     "PoseUnlock": [
 		{
@@ -295,6 +331,16 @@
           "id": "6a8bc97d83d55722625400ac",
           "source": "unlockedInGame",
           "type": "mannequinPose"
+        },
+        {
+          "id": "6a91a64d81766e48b8a66522",
+          "source": "unlockedInGame",
+          "type": "mannequinPose"
+        },
+        {
+          "id": "6a91a649c7a96b1dc900f1c6",
+          "source": "unlockedInGame",
+          "type": "mannequinPose"
         }
     ],
     "Name": {
@@ -309,6 +355,8 @@
         "Hideout/Mannequin/Pose/chachihu": "The Winged Tiger",
         "Hideout/Mannequin/Pose/honored_one": "Honored One",
         "Hideout/Mannequin/Pose/virtual_insanity": "Hold Up",
-        "Hideout/Mannequin/Pose/we_see_it": "We see the Fit"
+        "Hideout/Mannequin/Pose/we_see_it": "We see the Fit",
+        "Hideout/Mannequin/Pose/technique_purple": "Hollow Technique",
+        "Hideout/Mannequin/Pose/good_time": "Show Me Jack!"
     }
 }
